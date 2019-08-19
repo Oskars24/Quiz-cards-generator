@@ -2,7 +2,7 @@
 	// Odczytuje pytania z pola textarea
 	function catchQuest () {
 		const questions = Array.from(eval('['+document.querySelector('.qarea').value+']'))
-		const numOfpages = Math.ceil(questions.length/54)
+		//const numOfpages = Math.ceil(questions.length/54)
 		return questions
 		}
 	// Wybór tła:
@@ -154,7 +154,8 @@
 	
 	// TA FUNKCJA GENERUJE CAŁY PDF:
 	function createCards () {
-		questions = catchQuest()
+		const questions = catchQuest()
+		const numOfpages=Math.ceil(questions.length/54)
 		const cardsDef = {
 			info: {
 				title: 'Trivial Pursuit card generator',
