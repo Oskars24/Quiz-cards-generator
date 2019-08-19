@@ -38,7 +38,7 @@
 			simpleArrow(0,'#fff',lineWidth+1.45,0.355,x,y),
 			simpleArrow(0,'#fff',lineWidth+1.05,0.75,x,y),
 			simpleArrow(color, color, lineWidth, strokeOpacity,x,y)
-	]
+		]
 	}
 	
 	// Tło canvas przód
@@ -102,40 +102,37 @@
 		bgCanvasBack.stack.push(leftLogoImage(),rightLogoImage())
 		return bgCanvasBack
 	}
-	
+
+	// Mierzy długość podanego tekstu przy zadanym stylu np. '6px, Arial'
+	function getTextWidth(text, font) {
+		const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+		const context = canvas.getContext("2d");
+		context.font = font;
+		const metrics = context.measureText(text);
+		return metrics.width;
+	};
 	// Dopasowuje padding w zalezności od podziału tekstu na linie
 	function adjustPadding(string, lineWidth, firstPadding, secondPadding, thirdPadding) {
-	  text=string.trim().replace(/\s+/g,' ')
-	  if (text==='') {text='_'}
-	  text=text.split(' ')
-	  const dict = {'@': 5.387695313,'W': 5.323242188,'m': 5.258789063,'M': 5.238281250,'w': 4.508789063,'%': 4.394531250,'H': 4.277343750,'N': 4.277343750,'Q': 4.125000000,'O': 4.125000000,'G': 4.086914063,'~': 4.081054688,'D': 3.934570313,'A': 3.914062500,'C': 3.905273438,'U': 3.890625000,'V': 3.817382813,'P': 3.785156250,'K': 3.761718750,'X': 3.761718750,'B': 3.735351563,'&': 3.729492188,'#': 3.694335938,'R': 3.694335938,'Y': 3.603515625,'Z': 3.591796875,'T': 3.580078125,'S': 3.559570313,'o': 3.421875000,'q': 3.410156250,'E': 3.410156250,'+': 3.401367188,'d': 3.383789063,'1': 3.369140625,'2': 3.369140625,'3': 3.369140625,'4': 3.369140625,'5': 3.369140625,'6': 3.369140625,'7': 3.369140625,'8': 3.369140625,'9': 3.369140625,'0': 3.369140625,'$': 3.369140625,'p': 3.366210938,'g': 3.366210938,'b': 3.366210938,'F': 3.316406250,'n': 3.310546875,'J': 3.310546875,'u': 3.307617188,'h': 3.304687500,'=': 3.292968750,'a': 3.263671875,'L': 3.228515625,'e': 3.178710938,'c': 3.140625000,'>': 3.134765625,'s': 3.093750000,'<': 3.049804688,'k': 3.041015625,'z': 2.973632813,'x': 2.973632813,'v': 2.906250000,'y': 2.838867188,'?': 2.833007813,'_': 2.707031250,'*': 2.583984375,'^': 2.507812500,')': 2.085937500,'f': 2.083007813,'(': 2.050781250,'r': 2.030273438,'{': 2.030273438,'}': 2.030273438,'t': 1.959960938,'"': 1.918945313,'`': 1.854492188,'-': 1.655273438,'I': 1.631835938,'[': 1.590820313,']': 1.590820313,'.': 1.579101563,'!': 1.543945313,'|': 1.461914063,'i': 1.456054688,'l': 1.456054688,':': 1.453125000,'j': 1.432617188,';': 1.268554688,',': 1.177734375, }
-	  // Przypisuje literom ich szerokość według słownika
-	  for (let i=0; i<text.length; i++) {
-		  text[i]=text[i].split('')
-		  for (let j=0; j<text[i].length; j++) {
-			  text[i][j]=(text[i][j] in dict) ? dict[text[i][j]] : 3.119441106;
-		  }
-		text[i]=text[i].reduce(function(a, b) {return a + b;})
-	  }
-	  // Sprawdza na ile wierszy zostanie podzielony text
-	  let sumLine=1
-	  j=0
-	  for (let i=0; i<text.length; i++) {
-		text.slice(j,i+1).reduce(function(a, b) {
-		  if (a+1.4853515625+b>lineWidth) {
-			sumLine++
-			j=i
-			i--
-		  }
-		  return a+1.4853515625+b;
-		})
-	  }
-	  // Przypisuje wartość paddingu w zależności od ilości wierszy
-	  if (sumLine===1) {
-		return firstPadding
-	  } else if (sumLine===2) {
-		return secondPadding
-	  } else {return thirdPadding}
+		text=string.trim().replace(/\s+/g,' ')
+		if (text==='') {text='_'}
+		text=text.split(' ')
+		// Sprawdza na ile wierszy zostanie podzielony text
+		let sumLine=1
+		let j=0
+		for (let i=0; i<text.length; i++) {
+			fragment=text.slice(j,i+1).join(' ')
+			if(getTextWidth(fragment,'6px Roboto')>lineWidth) {
+				sumLine++
+				j=i
+				i--
+			}
+		}
+		// Przypisuje wartość paddingu w zależności od ilości wierszy
+		if (sumLine===1) {
+			return firstPadding
+			} else if (sumLine===2) {
+				return secondPadding
+			} else {return thirdPadding}
 	}
 	
 	// Pojedyncza karta (przód)
@@ -143,6 +140,7 @@
 		return {
 			table: {
 				widths: [39.606299213, 190],
+				
 				body: [
 					['',{maxHeight: 24, text: (questions[startQuestion] != null) ? questions[startQuestion][0] : ' '}],
 					['',{maxHeight: 24, text: (questions[startQuestion+1] != null) ? questions[startQuestion+1][0] : ' '}],
@@ -157,15 +155,8 @@
 				vLineWidth: function (i, node) {return 0;},
 				paddingLeft: function (i, node) {return 0;},
 				paddingRight: function (i, node) {return 0;},
-				
-				
-				paddingTop: function (i, node) {console.log(adjustPadding(node.table.body[i][1].text,190,7.95,4.47,0.85))
-					return adjustPadding(node.table.body[i][1].text,190,7.95,4.47,0.85)},
+				paddingTop: function (i, node) {return adjustPadding(node.table.body[i][1].text,190,7.95,4.47,0.85)},
 				paddingBottom: function (i, node) {return adjustPadding(node.table.body[i][1].text,190,7.95,4.465,0.85)},
-				/*paddingTop: function (i, node) {if (node.table.body[i][1]._maxWidth <= 190) {return 7.95}
-				else if(node.table.body[i][1]._maxWidth <= 380) {return 4.47} else {return 0.85}},
-				paddingBottom: function (i, node) {if (node.table.body[i][1]._maxWidth <= 190) {return 7.95}
-				else if(node.table.body[i][1]._maxWidth <= 380) {return 4.467} else {return 0.85}},*/
 				hLineColor: function (i, node) {return '#003b8f';},
 
 			}
@@ -183,11 +174,8 @@
 					['',{border: [0,0,0,1], text: ''},{maxHeight: 24, border: [0,0,0,1], text: (questions[startQuestion+4] != null) ? questions[startQuestion+4][1] : ' '},''],
 					['',{border: [0,0,0,1], text: ''},{maxHeight: 24, text: (questions[startQuestion+5] != null) ? questions[startQuestion+5][1] : ' '},'']
 				]
-		bCard.layout.paddingTop= function (i, node) {if (node.table.body[i][2]._maxWidth <= 100) {return 7.95}
-		else if(node.table.body[i][2]._maxWidth <= 200) {return 4.47} else {return 0.85}}
-		bCard.layout.paddingBottom= function (i, node) {if (node.table.body[i][2]._maxWidth <= 100) {return 7.95}
-		else if(node.table.body[i][2]._maxWidth <= 200) {return 4.47} else {return 0.85}}
-		//bCard.layout.fillColor= function (rowIndex, node, columnIndex) {return (columnIndex != 2) ? null : '#0383e8';}
+		bCard.layout.paddingTop= function (i, node) {return adjustPadding(node.table.body[i][2].text,105,7.95,4.47,0.85)},
+		bCard.layout.paddingBottom= function (i, node) {return adjustPadding(node.table.body[i][2].text,105,7.95,4.465,0.85)},
 		bCard.layout.defaultBorder= false
 		return bCard
 	}
@@ -220,7 +208,6 @@
 								[bCard(30+(page-1)*54),bCard(24+(page-1)*54),bCard(18+(page-1)*54)],
 								[bCard(48+(page-1)*54),bCard(42+(page-1)*54),bCard(36+(page-1)*54)]
 							]
-		//pdfBackPage.pageBreak = null
 		return pdfBackPage
 	}
 	
@@ -265,7 +252,6 @@
 					margin: [42.58503937,46.771653543]
 			}},
 			//Tutaj generuje się główny kontent
-			//content: [pdfFrontPage(2),pdfBackPage(2)],
 			content: contentArray(),
 			
 			styles: {
