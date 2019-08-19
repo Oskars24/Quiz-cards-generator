@@ -1,14 +1,108 @@
-﻿document.addEventListener("DOMContentLoaded", function() {
-	// Odczytuje pytania z pola textarea
-	function catchQuest () {
-		const questions = Array.from(eval('['+document.querySelector('.qarea').value+']'))
-		//const numOfpages = Math.ceil(questions.length/54)
-		return questions
+﻿// Zmienne "val" pochodzą z pliku js/canvas.js
+document.addEventListener("DOMContentLoaded", function() {
+	// Definicje stałych
+	const importButton = document.querySelector('.importButton')
+	const error1 = document.querySelector('.error1')
+	const previousButton = document.querySelector('.previousButton')
+	const nextButton = document.querySelector('.nextButton')
+	const previousButton2 = document.querySelector('.previousButton2')
+	const generateButton = document.querySelector('.generateButton')
+	const textAreaContent = document.querySelector('.textAreaContent')
+	const questionsContent = document.querySelector('.questionsContent')
+	const styleContent = document.querySelector('.styleContent')
+	
+	// Definicje przycisków
+	importButton.addEventListener('click', catchQuest)
+	previousButton.addEventListener('click', previousButtonAction)
+	nextButton.addEventListener('click', nextButtonAction)
+	previousButton2.addEventListener('click', previousButton2Action)
+	generateButton.addEventListener('click', generateCards)
+	
+	// Sprawdza długość pola input i przypisuje odpowiednią klasę
+	function checkInputLength (text, maxLength) {
+				if(checkNumOfLines(text, '6px Roboto', maxLength,4)>3) {
+					return ' tooLong'
+				} else {return ''}
+			}
+	
+	// Waliduje pola input w czasie rzeczywistym
+	questionsContent.addEventListener('input', function(event){
+		if (event.target.classList.contains('question')) {
+			if(checkNumOfLines(event.target.value, '6px Roboto', 190,4)>3) {
+				event.target.classList.add('tooLong')
+			} else {
+				event.target.classList.remove('tooLong')
+			}
+		} else {
+			if(checkNumOfLines(event.target.value, '6px Roboto', 105,4)>3) {
+				event.target.classList.add('tooLong')
+			} else {
+				event.target.classList.remove('tooLong')
+			}
 		}
+	});
+	
+	// Importuje pytania i porządkuje w polach input
+	function catchQuest () {
+		try {
+			const questions = Array.from(eval('['+document.querySelector('.qarea').value.replace(/"/g,'&quot;')+']'))
+			error1.classList.add('disable')
+			textAreaContent.classList.add('disable')
+			previousButton.classList.toggle('disable')
+			nextButton.classList.toggle('disable')
+			importButton.classList.add('disable')
+			questionsContent.classList.toggle('disable')
+			function makeInputs() {
+				let inputs=''
+				for (i=0;i<questions.length;i++) {
+					inputs=inputs+'<div class="qaLine"><label class="label">Q:<input class="question'+checkInputLength(questions[i][0], 190)+'" type="text" value="'+questions[i][0]+'"></label><label class="label">A:<input class="anserw'+checkInputLength(questions[i][1], 105)+'" type="text" value="'+questions[i][1]+'"></label></div>'
+				}
+				return inputs
+			}
+			questionsContent.insertAdjacentHTML('afterbegin', makeInputs())
+		} catch {
+				error1.classList.remove('disable')
+			}
+		}
+		
+	// Funkcja przycisku "wróć_1"	
+	function previousButtonAction () {
+		error1.classList.add('disable')
+		previousButton.classList.toggle('disable')
+		nextButton.classList.toggle('disable')
+		questionsContent.classList.toggle('disable')
+		textAreaContent.classList.toggle('disable')
+		importButton.classList.toggle('disable')
+		while (questionsContent.firstChild) {
+			questionsContent.firstChild.remove()
+		}
+	}
+	
+	// Funkcja przycisku "dalej"	
+	function nextButtonAction () {
+		questionsContent.classList.toggle('disable')
+		previousButton.classList.toggle('disable')
+		nextButton.classList.toggle('disable')
+		styleContent.classList.toggle('disable')
+		previousButton2.classList.toggle('disable')
+		generateButton.classList.toggle('disable')
+	}
+	
+	// Funkcja przycisku "wróć_2"
+	function previousButton2Action () {
+		styleContent.classList.toggle('disable')
+		previousButton2.classList.toggle('disable')
+		generateButton.classList.toggle('disable')
+		questionsContent.classList.toggle('disable')
+		previousButton.classList.toggle('disable')
+		nextButton.classList.toggle('disable')
+	}
+	
 	// Wybór tła:
 	const bgChoice = (currentPage) => {
 		if (currentPage % 2 > 0) {return bgCanvasFront(0)} else {return bgCanvasBack(38)}
 	}
+	
 	// Canvas object ze strzałką
 	function simpleArrow (color, lineColor, lineWidth, strokeOpacity,x,y) {
 		return {
@@ -23,6 +117,7 @@
 					 {x: 26.2+x, y: 32.2+y},{x: 43.2+x, y: 23.55+y},{x: 26.2+x, y: 14.9+y}]
 		}
 	}
+	
 	// Canvas object ze strzałką z podświetleniem
 	function catArrow (color, lineWidth, strokeOpacity,x,y) {
 		return [
@@ -40,22 +135,30 @@
 			simpleArrow(color, color, lineWidth, strokeOpacity,x,y)
 		]
 	}
-	
 	// Tło canvas przód
 	function bgCanvasFront(x) {
+		lineWidth = val.fbgBorderWidth
 		return {
 			stack: [{
 					canvas: [
 					{
 						type: 'rect',
-						x: 0,
-						y: 0,
-						w: 252.283464567,
-						h: 167.244094488,
-						r: 12.5,
-						//lineWidth: 1,
-						//lineColor: 'black',
-						color: '#0073d6',
+						x: lineWidth/2,
+						y: lineWidth/2,
+						w: 252.283464567-lineWidth,
+						h: 167.244094488-lineWidth,
+						r: val.fbgCornersRound,
+						color: val.fbgColor,
+						fillOpacity: val.fbgColorOpacity,
+						lineWidth: lineWidth,
+						lineColor: (val.fbgBorderWidth>0) ? val.fbgBorderCornersColor : null,
+						strokeOpacity: (val.fbgBorderWidth>0) ? val.fbgBorderCornersColorOpacity : null,
+						lineJoin: (val.fbgBorderWidth>0) ? val.fbgBorderCornersLineJoin : null,
+						lineCap: (val.fbgBorderWidth>0) ? val.fbgBorderCornersLineCap : null,
+						dash: {
+							length: (val.fbgBorderWidth>0) ? val.fbgBorderCornersDashLength : null,
+							space: (val.fbgBorderWidth>0) ? val.fbgBorderCornersDashSpace : null
+							},
 					},
 					{
 						type: 'rect',
@@ -63,22 +166,20 @@
 						y: 12.12204724,
 						w: 229.606299213,
 						h: 144,
-						//r: 12.5,
-						//lineWidth: 1,
-						//lineColor: 'black',
 						color: '#0383e8',
 					}
 				].concat(
-						catArrow('#780d97',0.6250,1,x,0),
-						catArrow('#0391f1',0.6250,1,x,24),
-						catArrow('#e90687',0.6250,1,x,48),
-						catArrow('#f75116',0.6250,1,x,72),
-						catArrow('#fddb01',0.6250,1,x,96),
-						catArrow('#06bb69',0.6250,1,x,120)
+						catArrow(val.arrowCatColor1,0.6250,1,x,0),
+						catArrow(val.arrowCatColor2,0.6250,1,x,24),
+						catArrow(val.arrowCatColor3,0.6250,1,x,48),
+						catArrow(val.arrowCatColor4,0.6250,1,x,72),
+						catArrow(val.arrowCatColor5,0.6250,1,x,96),
+						catArrow(val.arrowCatColor6,0.6250,1,x,120)
 					)
 			}]
 		}
 	}
+
 	//Lewe logo na tle karty
 	function leftLogoImage() {
 		return {
@@ -87,6 +188,7 @@
 			relativePosition: {x: 17.638582677,y: -149.62204724}
 		}
 	}
+	
 	// Prawe logo na tle karty
 	function rightLogoImage() {
 		return {
@@ -102,7 +204,7 @@
 		bgCanvasBack.stack.push(leftLogoImage(),rightLogoImage())
 		return bgCanvasBack
 	}
-
+	
 	// Mierzy długość podanego tekstu przy zadanym stylu np. '6px, Arial'
 	function getTextWidth(text, font) {
 		const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
@@ -111,22 +213,29 @@
 		const metrics = context.measureText(text);
 		return metrics.width;
 	};
-	// Dopasowuje padding w zalezności od podziału tekstu na linie
-	function adjustPadding(string, lineWidth, firstPadding, secondPadding, thirdPadding) {
-		text=string.trim().replace(/\s+/g,' ')
-		if (text==='') {text='_'}
+	// Sprawdza na ile wierszy zostanie podzielony text
+	function checkNumOfLines (text, font, lineWidth,limit) {
 		text=text.split(' ')
-		// Sprawdza na ile wierszy zostanie podzielony text
 		let sumLine=1
 		let j=0
 		for (let i=0; i<text.length; i++) {
 			fragment=text.slice(j,i+1).join(' ')
-			if(getTextWidth(fragment,'6px Roboto')>lineWidth) {
+			if(getTextWidth(fragment,font)>lineWidth) {
 				sumLine++
+				if (sumLine===limit) {break}
 				j=i
 				i--
 			}
 		}
+		return sumLine
+	}
+	
+	// Dopasowuje padding w zalezności od podziału tekstu na linie
+	function adjustPadding(string, lineWidth, firstPadding, secondPadding, thirdPadding) {
+		text=string.trim().replace(/\s+/g,' ')
+		if (text==='') {text='_'}
+		sumLine=checkNumOfLines(text, '6px Roboto',lineWidth,3)
+		
 		// Przypisuje wartość paddingu w zależności od ilości wierszy
 		if (sumLine===1) {
 			return firstPadding
@@ -137,6 +246,8 @@
 	
 	// Pojedyncza karta (przód)
 	function fCard (startQuestion) {
+		const paddingZero=function (i, node) {return 0;}
+		const paddingAdjust=function (i, node) {return adjustPadding(node.table.body[i][1].text,190,7.9844,4.4688,0.9532)}
 		return {
 			table: {
 				widths: [39.606299213, 190],
@@ -152,11 +263,11 @@
 			},
 			layout: {
 				hLineWidth: function (i, node) {return (i === 0 || i === node.table.body.length) ? 0 : 1;},
-				vLineWidth: function (i, node) {return 0;},
-				paddingLeft: function (i, node) {return 0;},
-				paddingRight: function (i, node) {return 0;},
-				paddingTop: function (i, node) {return adjustPadding(node.table.body[i][1].text,190,7.95,4.47,0.85)},
-				paddingBottom: function (i, node) {return adjustPadding(node.table.body[i][1].text,190,7.95,4.465,0.85)},
+				vLineWidth: paddingZero,
+				paddingLeft: paddingZero,
+				paddingRight: paddingZero,
+				paddingTop: paddingAdjust,
+				paddingBottom: paddingAdjust,
 				hLineColor: function (i, node) {return '#003b8f';},
 
 			}
@@ -174,11 +285,12 @@
 					['',{border: [0,0,0,1], text: ''},{maxHeight: 24, border: [0,0,0,1], text: (questions[startQuestion+4] != null) ? questions[startQuestion+4][1] : ' '},''],
 					['',{border: [0,0,0,1], text: ''},{maxHeight: 24, text: (questions[startQuestion+5] != null) ? questions[startQuestion+5][1] : ' '},'']
 				]
-		bCard.layout.paddingTop= function (i, node) {return adjustPadding(node.table.body[i][2].text,105,7.95,4.47,0.85)},
-		bCard.layout.paddingBottom= function (i, node) {return adjustPadding(node.table.body[i][2].text,105,7.95,4.465,0.85)},
+		bCard.layout.paddingTop= function (i, node) {return adjustPadding(node.table.body[i][2].text,105,7.9844,4.4688,0.9532)},
+		bCard.layout.paddingBottom= bCard.layout.paddingTop,
 		bCard.layout.defaultBorder= false
 		return bCard
 	}
+	
 	// Pojedyncza strona (przód)
 	function pdfFrontPage (page) {
 		return {
@@ -201,6 +313,8 @@
 					pageBreak: 'after'
 		}
 	}
+	
+	// Pojedyncza strona (tył)
 	function pdfBackPage(page) {
 		const pdfBackPage = new pdfFrontPage(page)
 		pdfBackPage.table.body = [
@@ -211,9 +325,23 @@
 		return pdfBackPage
 	}
 	
+	// Importuje pytania z kroku drugiego
+	function takeQuestions() {
+		let questions=[]
+		inputList=questionsContent.childNodes
+		for (i=0;i<inputList.length;i++) {
+			questions.push([inputList[i].querySelector('.question').value,inputList[i].querySelector('.anserw').value])
+		}
+		questions.forEach(function(el) {
+			if (el[0].length===0) {el[0]=' '}
+			if (el[1].length===0) {el[1]=' '}
+		})
+		return questions
+	}
+	
 	// TA FUNKCJA GENERUJE CAŁY PDF:
 	function createCards () {
-		questions = catchQuest()
+		questions = takeQuestions()
 		const numOfpages=Math.ceil(questions.length/54)
 		function contentArray () {
 				let pagesArray = []
@@ -246,8 +374,8 @@
 							vLineWidth: function (i, node) {return 0;},
 							paddingTop: function(i, node) {return 0;},
 							paddingLeft: function(i, node) {return 0;},
-							paddingRight: function(i, node) {return 0;},
-							paddingBottom: function(i, node) { return 0;}
+							paddingRight: function(i, node) {return val.fbgBorderWidth/2;}, // naprawia błąd zachodzących na siebie obrysów tła
+							paddingBottom: function(i, node) {return val.fbgBorderWidth/2;}
 					},
 					margin: [42.58503937,46.771653543]
 			}},
@@ -264,11 +392,9 @@
 		}
 		return cardsDef
 	}
-	// Wywołanie funkcji generującej po kliknięciu w przycisk:
-	const gButton = document.querySelector('.generate')
-	function generateCards () {pdfMake.createPdf(createCards()).download('karty.pdf')}
-	gButton.addEventListener('click', catchQuest)
-	gButton.addEventListener('click', generateCards)
+	// Funkcja generująca pdf
+	function generateCards () {//console.log(JSON.stringify(a))
+		pdfMake.createPdf(createCards()).download('karty.pdf')}
 	
 });
 
