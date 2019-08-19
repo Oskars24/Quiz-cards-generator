@@ -1,11 +1,10 @@
 ﻿document.addEventListener("DOMContentLoaded", function() {
+	// Odczytuje pytania z pola textarea
 	function catchQuest () {
 		const questions = Array.from(eval('['+document.querySelector('.qarea').value+']'))
 		const numOfpages = Math.ceil(questions.length/54)
 		return questions
 		}
-	
-
 	// Wybór tła:
 	const bgChoice = (currentPage) => {
 		if (currentPage % 2 > 0) {
@@ -17,9 +16,8 @@
 			width: 252.283464567
 		}}
 	}
-
 	// Pojedyncza karta (przód)
-	const fCard = (startQuestion) => {
+	function fCard (startQuestion) {
 		return {
 			table: {
 				widths: [39.606299213, 190],
@@ -48,7 +46,13 @@
 			}
 		}
 	}
-	// Ta funkcja generuje cały pdf:
+	//Pojedyncza karta (tył)
+	function bCard (startQuestion) {
+		const bCard = new fCard(startQuestion)
+		bCard.table.widths = [39.606299213,150,40]
+		return bCard
+	}
+	// TA FUNKCJA GENERUJE CAŁY PDF:
 	function createCards () {
 		questions = catchQuest()
 		const cardsDef = {
@@ -82,7 +86,7 @@
 			
 			content: [
 				{
-					style: 'test',
+					style: 'cardStyle',
 					table: {
 						body: [
 							[fCard(0),fCard(6),fCard(12)],
@@ -103,7 +107,7 @@
 
 			],
 			styles: {
-				test: {
+				cardStyle: {
 					color: 'white',
 					fontSize: 6,
 					alignment: 'left'
@@ -118,6 +122,5 @@
 	gButton.addEventListener('click', catchQuest)
 	gButton.addEventListener('click', generateCards)
 	
-
 });
 
