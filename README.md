@@ -9,7 +9,7 @@ The application allows you to create cards with your own questions for the Trivi
 * pdfmake
 
 #### How it's working:
-1) Download the repository or look [project in CodePen](https://codepen.io/oskars24/full/OJLRWgj) and go to step 3
+1) Download the repository
 2) Run the __index.html__ file
 3) Enter the questions in the format given below and click the button __"Importuj pytania"__ (ie. "Import questions"):
 ```sh
@@ -41,7 +41,7 @@ Aplikacja pozwala stworzyć karty z własnymi pytaniami do gry Trivial, spersona
 * pdfmake
 
 #### Uruchamianie:
-1) Pobierz repozytorium lub zobacz [projekt w CodePen](https://codepen.io/oskars24/full/OJLRWgj) i idź do kroku 3
+1) Pobierz repozytorium
 2) Uruchom plik __index.html__
 3) Wprowadź pytania w formacie podanym poniżej i kliknij przycisk __"Importuj pytania"__:
 ```sh
