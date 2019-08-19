@@ -1,0 +1,151 @@
+.main-grid{
+	margin: 0 auto;
+	max-width: 700px;
+	text-align: center;
+	background-color: #fff;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border: 1px solid rgba(0, 0, 0, 0.20);
+	box-shadow: 0px 0px 25px rgba(84, 84, 84, 0.2) inset;
+}
+.header {
+	margin-top: 10px;
+}
+
+.tooLong{
+	background-color: red;
+}
+
+.nav {
+	
+}
+
+.previousButton {
+	
+}
+
+.nextButton {
+
+}
+
+.main {
+	
+}
+.app {
+	margin-bottom: 10px;
+}
+
+.textAreaContent {
+	
+}
+
+.qarea {
+	width: 90%;
+    height: 300px;
+	margin: 10px;
+}
+
+.label {
+	
+}
+
+.question {
+	
+}
+
+.anserw {
+	
+}
+
+.buttonsField {
+	margin: 10px;
+}
+.importButton {
+	
+}
+.generateButton {
+	
+}
+
+.arrowsDiv {
+    font-size: 25px;
+}
+
+.littleArrow {
+    font-size: 12pt;
+    vertical-align: middle;
+    padding-left: 5px;
+}
+
+.bothDivStyle {
+    display: inline-flex;
+}
+
+.bothStyle {
+	display: grid;
+	margin: 5px;
+	padding: 10px;
+	text-align: left;
+	border-radius: 5px;
+	border: 1px solid rgba(0, 0, 0, 0.20);
+    box-shadow: 0px 0px 25px rgba(84, 84, 84, 0.2) inset;
+}
+
+.littleCard {
+	font-size: 10px;
+	text-align: center;
+	padding: 3px;
+}
+
+.canvasDiv {
+	display: grid;
+	letter-spacing: 0.5px;
+	padding: 5px;
+}
+
+.label {
+	margin: 5px;
+	font-size: 12pt;
+}
+
+.arrowLabel1 {
+	color: #780d97;
+}
+
+.arrowLabel2 {
+	color: #0391f1;
+}
+
+.arrowLabel3 {
+	color: #e90687;
+}
+
+.arrowLabel4 {
+	color: #f75116;
+}
+
+.arrowLabel5 {
+	color: #fddb01;
+}
+
+.arrowLabel6 {
+	color: #06bb69;
+}
+
+
+.footer {
+	margin: 10px;
+	text-align: center;
+}
+
+.disable {
+	display: none;
+}
+
+@media (max-width: 768px) {
+    h1 {
+		color: red;
+	}
+}
