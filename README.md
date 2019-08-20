@@ -1,6 +1,6 @@
-# Trivial Card Generator
+# Quiz Cards Generator
 #### Description (PL below):
-The application allows you to create cards with your own questions for the Trivial game, personalize their appearance and generate a pdf file ready for double-sided printing. Works 100% on the browser side.
+The application allows you to create cards with your own questions for the quiz game, personalize their appearance and generate a pdf file ready for double-sided printing. Works 100% on the browser side.
 
 #### Used technologies:
 * HTML
@@ -30,9 +30,8 @@ The application includes an extensive appearance editor. Most card elements can 
 
 ___
 
-# Generator kart Trivial
 #### Opis:
-Aplikacja pozwala stworzyć karty z własnymi pytaniami do gry Trivial, spersonalizować ich wygląd i wygenerować plik pdf gotowy do dwustronnego druku. Działa w 100% po stronie przeglądarki.
+Aplikacja pozwala stworzyć karty z własnymi pytaniami do quizu, spersonalizować ich wygląd i wygenerować plik pdf gotowy do dwustronnego druku. Działa w 100% po stronie przeglądarki.
 
 #### Wykorzystane technologie:
 * HTML
