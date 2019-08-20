@@ -125,10 +125,6 @@ const arrowLabel3 = document.querySelector('.arrowLabel3')
 const arrowLabel4 = document.querySelector('.arrowLabel4')
 const arrowLabel5 = document.querySelector('.arrowLabel5')
 const arrowLabel6 = document.querySelector('.arrowLabel6')
-const fbgBorder = document.querySelector('.fbgBorder')
-const fboxTableBorder = document.querySelector('.fboxTableBorder')
-const bbgBorder = document.querySelector('.bbgBorder')
-const bboxTableBorder = document.querySelector('.bboxTableBorder')
 
 // Funkcja śledzenia aktywności w formularzu stylu
 document.querySelector('.styleContent').addEventListener('input', async function() {
@@ -141,10 +137,6 @@ document.querySelector('.styleContent').addEventListener('input', async function
 	} else {true}
 	const redraw=await drawCanvas()
 	
-	if (val.fbgBorderWidth != 0) {fbgBorder.classList.remove('disable')} else {fbgBorder.classList.add('disable')}
-	if (val.fboxBorderWidth != 0) {fboxTableBorder.classList.remove('disable')} else {fboxTableBorder.classList.add('disable')}
-	if (val.bbgBorderWidth != 0) {bbgBorder.classList.remove('disable')} else {bbgBorder.classList.add('disable')}
-	if (val.bboxBorderWidth != 0) {bboxTableBorder.classList.remove('disable')} else {bboxTableBorder.classList.add('disable')}
     arrowLabel1.style.setProperty('color', val.arrowCatColor1)
 	arrowLabel2.style.setProperty('color', val.arrowCatColor2)
 	arrowLabel3.style.setProperty('color', val.arrowCatColor3)

@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
 	<meta charset="utf-8">
-	<title>Trivial Cards Generator</title>
+	<title>Quiz Cards Generator</title>
 	<link rel="Stylesheet" href="css/style.css">
 	<script type="text/javascript" src="js/canvas.js" defer></script>
 	<script type="text/javascript" src="js/script.js" defer></script>
@@ -13,7 +13,7 @@
 <body>
 
 <div class='main-grid'>
-<header class="header"><h1>Trivial Cards Generator</h1></header>
+<header class="header"><h1>Quiz Cards Generator</h1></header>
 
 <main class="main">
 	<section class="app">
@@ -25,7 +25,7 @@
 		<div class="error1 disable">Tekst musi być w formacie "['Pytanie nr 1','Odpowiedź nr 1'], ..."</div>
 		<div class="questionsContent disable"></div>
 		<div class="styleContent disable">
-			<div class="bothDivStyle">
+			<div class="cardsDivStyle">
 				<div class="canvasDiv">
 					<a class="littleCard">PODGLĄD (przód)</a>
 					<canvas width="252" height="167" class="canvasFront">
@@ -39,138 +39,190 @@
 					</canvas>
 				</div>
 			</div>
-			<div class="bothDivStyle">
-				<div class="bothStyle">
-					<a class="littleCard">STRZAŁKI (przód/tył)</a>
-					<div class="arrowsDiv">
-						<a class="littleArrow">Kolory: </a>
-						<label class="arrowLabel1">►<input type="color" value="#780d97" class="arrow1 disable"></label>
-						<label class="arrowLabel2">►<input type="color" value="#0391f1" class="arrow2 disable"></label>
-						<label class="arrowLabel3">►<input type="color" value="#e90687" class="arrow3 disable"></label>
-						<label class="arrowLabel4">►<input type="color" value="#f75116" class="arrow4 disable"></label>
-						<label class="arrowLabel5">►<input type="color" value="#fddb01" class="arrow5 disable"></label>
-						<label class="arrowLabel6">►<input type="color" value="#06bb69" class="arrow6 disable"></label>
-					</div>
-					<label class="label">Obramowanie: <select class="arrowBorderStyle">
-							<option>blask</option>
-							<option>obrys</option>
-						</select></label>
-					<label class="label">Kolor obramowania: <input type="color" value="#ffffff" class="arrowBorderColor"></label>
-				</div>
-				<div class="bothStyle">
-					<a class="littleCard">OBRAZY TŁA (tył)</a>
-					<label class="label"> Logo z lewej: <input type="file" accept="image/png, image/jpeg" class="leftLogoImageSrc"></label>
-					<label class="label"> Logo z prawej: <input type="file" accept="image/png, image/jpeg" class="rightLogoImageSrc"></label>
-				</div>
-			</div>
-			<div class="bothDivStyle">
-				<div class="">
-					<div class="bothStyle">
-						<a class="littleCard">TŁO (przód)</a>
-						<label class="label">Kolor: <input type="color" value="#0073d6" class="fbgColor"></label>
-						<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="fbgColorOpacity"></label>
-						<label class="label">Promień: <input type="number" min="0" max="83.5" step="0.5" value="12.5" class="fbgCornersRound"></label>
-						<label class="label">Obrys: <input type="number" min="0" max="83.5" step="0.1" value="0" class="fbgBorderWidth"></label>
-					</div>
-					<div class="bothStyle fbgBorder disable">
-						<a class="littleCard">OBRYS TŁA (przód)</a>
-						<label class="label">Kolor obrysu: <input type="color" value="#000000" class="fbgBorderCornersColor"></label>
-						<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="fbgBorderCornersColorOpacity"></label>
-						<label class="label">Łączenie linii: <select class="fbgBorderCornersLineJoin">
-							<option>round</option>
-							<option>bevel</option>
-							<option>mitter</option>
-						</select></label>
-						<label class="label">Zakończenie linii: <select class="fbgBorderCornersLineCap">
-							<option>round</option>
-							<option>butt</option>
-							<option>square</option>
-						</select></label>
-						<label class="label">Odstęp kreski: <input type="number" min="0" step="1" value="0" class="fbgBorderCornersDashSpace"></label>
-						<label class="label">Długość kreski: <input type="number" min="0" step="1" value="0" class="fbgBorderCornersDashLength"></label>
-						<label class="label">Przesunięcie fazowe: <input type="number" min="0" step="1" value="0" class="fbgBorderCornersDashPhase"></label>
-						
-					</div>
-					<div class="bothStyle">
-						<a class="littleCard">TŁO TABELI (przód)</a>
-						<label class="label">Kolor: <input type="color" value="#0383e8" class="fboxColor"></label>
-						<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="fboxColorOpacity"></label>
-						<label class="label">Promień: <input type="range" min="0" max="72" step="0.5" value="0" class="fboxCornersRound"></label>
-						<label class="label">Kolor linii: <input type="color" value="#003b8f" class="ftableLineColor"></label>
-						<label class="label">Kolor tekstu: <input type="color" value="#ffffff" class="ftextColor"></label>
-						<label class="label">Obrys: <input type="range" min="0" max="72" step="0.1" value="0" class="fboxBorderWidth"></label>
-					</div>
-					<div class="bothStyle fboxTableBorder disable">
-						<a class="littleCard">OBRYS TŁA TABELI (przód)</a>
-						<label class="label">Kolor obrysu: <input type="color" value="#000000" class="fboxBorderCornersColor"></label>
-						<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="fboxBorderCornersColorOpacity"></label>
-						<label class="label">Łączenie linii: <select class="fboxBorderCornersLineJoin">
-							<option>round</option>
-							<option>bevel</option>
-							<option>mitter</option>
-						</select></label>
-						<label class="label">Zakończenie linii: <select class="fboxBorderCornersLineCap">
-							<option>round</option>
-							<option>butt</option>
-							<option>square</option>
-						</select></label>
-						<label class="label">Odstęp kreski: <input type="number" min="0" step="1" value="0" class="fboxBorderCornersDashSpace"></label>
-						<label class="label">Długość kreski: <input type="number" min="0" step="1" value="0" class="fboxBorderCornersDashLength"></label>
-						<label class="label">Przesunięcie fazowe: <input type="number" min="0" step="1" value="0" class="fboxBorderCornersDashPhase"></label>
+			<div class="settingsDivStyle">
+				<div class="collapse">
+					<div class="collapse-label">
+						<input type="checkbox" id="label1">
+						<label class="collapse-header" for="label1">STRZAŁKI (przód/tył)</label>
+						<div class="collapse-content">
+							<div class="arrowsDiv">
+								<a class="littleArrow">Kolory: </a>
+								<label class="arrowLabel1">►<input type="color" value="#780d97" class="arrow1 disable"></label>
+								<label class="arrowLabel2">►<input type="color" value="#0391f1" class="arrow2 disable"></label>
+								<label class="arrowLabel3">►<input type="color" value="#e90687" class="arrow3 disable"></label>
+								<label class="arrowLabel4">►<input type="color" value="#f75116" class="arrow4 disable"></label>
+								<label class="arrowLabel5">►<input type="color" value="#fddb01" class="arrow5 disable"></label>
+								<label class="arrowLabel6">►<input type="color" value="#06bb69" class="arrow6 disable"></label>
+							</div>
+							<label class="label">Obramowanie: <select class="arrowBorderStyle">
+									<option>blask</option>
+									<option>obrys</option>
+								</select></label>
+							<label class="label">Kolor obramowania: <input type="color" value="#ffffff" class="arrowBorderColor"></label>
+						</div>
 					</div>
 				</div>
-				<div class="">
-					<div class="bothStyle">
-						<a class="littleCard">TŁO (tył)</a>
-						<label class="label">Kolor: <input type="color" value="#0073d6" class="bbgColor"></label>
-						<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="bbgColorOpacity"></label>
-						<label class="label">Promień: <input type="range" min="0" max="83.5" step="0.5" value="12.5" class="bbgCornersRound"></label>
-						<label class="label">Obrys: <input type="range" min="0" max="83.5" step="0.1" value="0" class="bbgBorderWidth"></label>
+
+				<div class="collapse">
+					<div class=collapse-label>
+						<input type="checkbox" id="label2">
+						<label class="collapse-header" for="label2">OBRAZY TŁA (tył)</label>
+							<div class="collapse-content">
+								<label class="label"> Logo z lewej: <input type="file" accept="image/png, image/jpeg" class="leftLogoImageSrc"></label>
+								<label class="label"> Logo z prawej: <input type="file" accept="image/png, image/jpeg" class="rightLogoImageSrc"></label>
+							</div>
 					</div>
-					<div class="bothStyle bbgBorder disable">
-						<a class="littleCard">OBRYS TŁA (tył)</a>
-						<label class="label">Kolor obrysu: <input type="color" value="#000000" class="bbgBorderCornersColor"></label>
-						<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="bbgBorderCornersColorOpacity"></label>
-						<label class="label">Łączenie linii: <select class="bbgBorderCornersLineJoin">
-							<option>round</option>
-							<option>bevel</option>
-							<option>mitter</option>
-						</select></label>
-						<label class="label">Zakończenie linii: <select class="bbgBorderCornersLineCap">
-							<option>round</option>
-							<option>butt</option>
-							<option>square</option>
-						</select></label>
-						<label class="label">Odstęp kreski: <input type="number" min="0" step="1" value="0" class="bbgBorderCornersDashSpace"></label>
-						<label class="label">Długość kreski: <input type="number" min="0" step="1" value="0" class="bbgBorderCornersDashLength"></label>
-						<label class="label">Przesunięie fazowe: <input type="number" min="0" step="1" value="0" class="bbgBorderCornersDashPhase"></label>
+				</div>
+
+				<div class="collapse">
+					<div class="collapse-label">
+						<input type="checkbox" id="label3">
+						<label class="collapse-header" for="label3">TŁO (przód)</label>
+						<div class="collapse-content">
+							<label class="label">Kolor: <input type="color" value="#0073d6" class="fbgColor"></label>
+							<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="fbgColorOpacity"></label>
+							<label class="label">Promień: <input type="number" min="0" max="83.5" step="0.5" value="12.5" class="fbgCornersRound"></label>
+							<label class="label">Obrys: <input type="number" min="0" max="83.5" step="0.1" value="0" class="fbgBorderWidth"></label>
+						</div>
 					</div>
-					<div class="bothStyle">
-						<a class="littleCard">TŁO TABELI (tył)</a>
-						<label class="label">Kolor: <input type="color" value="#0383e8" class="bboxColor"></label>
-						<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="bboxColorOpacity"></label>
-						<label class="label">Promień: <input type="range" min="0" max="72" step="0.5" value="0" class="bboxCornersRound"></label>
-						<label class="label">Kolor linii: <input type="color" value="#003b8f" class="btableLineColor"></label>
-						<label class="label">Kolor tekstu: <input type="color" value="#ffffff" class="btextColor"></label>
-						<label class="label">Obrys: <input type="range" min="0" max="72" step="0.1" value="0" class="bboxBorderWidth"></label>
+				</div>
+
+				<div class="collapse">
+					<div class="collapse-label">
+						<input type="checkbox" id="label4">
+						<label class="collapse-header" for="label4">OBRYS TŁA (przód)</label>
+						<div class="collapse-content">
+							<label class="label">Kolor obrysu: <input type="color" value="#000000" class="fbgBorderCornersColor"></label>
+							<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="fbgBorderCornersColorOpacity"></label>
+							<label class="label">Łączenie linii: <select class="fbgBorderCornersLineJoin">
+								<option>round</option>
+								<option>bevel</option>
+								<option>mitter</option>
+							</select></label>
+							<label class="label">Zakończenie linii: <select class="fbgBorderCornersLineCap">
+								<option>round</option>
+								<option>butt</option>
+								<option>square</option>
+							</select></label>
+							<label class="label">Odstęp kreski: <input type="number" min="0" step="1" value="0" class="fbgBorderCornersDashSpace"></label>
+							<label class="label">Długość kreski: <input type="number" min="0" step="1" value="0" class="fbgBorderCornersDashLength"></label>
+							<label class="label">Przesunięcie fazowe: <input type="number" min="0" step="1" value="0" class="fbgBorderCornersDashPhase"></label>
+						</div>
 					</div>
-					<div class="bothStyle bboxTableBorder disable">
-						<a class="littleCard">OBRYS TŁA TABELI (tył)</a>
-						<label class="label">Kolor obrysu: <input type="color" value="#000000" class="bboxBorderCornersColor"></label>
-						<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="bboxBorderCornersColorOpacity"></label>
-						<label class="label">Łączenie linii: <select class="bboxBorderCornersLineJoin">
-							<option>round</option>
-							<option>bevel</option>
-							<option>mitter</option>
-						</select></label>
-						<label class="label">Zakończenie linii: <select class="bboxBorderCornersLineCap">
-							<option>round</option>
-							<option>butt</option>
-							<option>square</option>
-						</select></label>
-						<label class="label">Odstęp kreski: <input type="number" min="0" step="1" value="0" class="bboxBorderCornersDashSpace"></label>
-						<label class="label">Długość kreski: <input type="number" min="0" step="1" value="0" class="bboxBorderCornersDashLength"></label>
-						<label class="label">Przesunięcie fazowe: <input type="number" min="0" step="1" value="0" class="bboxBorderCornersDashPhase"></label>
+				</div>
+
+				<div class="collapse">
+					<div class="collapse-label">
+						<input type="checkbox" id="label5">
+						<label class="collapse-header" for="label5">TŁO TABELI (przód)</label>
+						<div class="collapse-content">
+							<label class="label">Kolor: <input type="color" value="#0383e8" class="fboxColor"></label>
+							<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="fboxColorOpacity"></label>
+							<label class="label">Promień: <input type="range" min="0" max="72" step="0.5" value="0" class="fboxCornersRound"></label>
+							<label class="label">Kolor linii: <input type="color" value="#003b8f" class="ftableLineColor"></label>
+							<label class="label">Kolor tekstu: <input type="color" value="#ffffff" class="ftextColor"></label>
+							<label class="label">Obrys: <input type="range" min="0" max="72" step="0.1" value="0" class="fboxBorderWidth"></label>
+						</div>
+					</div>
+				</div>
+
+				<div class="collapse">
+					<div class="collapse-label">
+						<input type="checkbox" id="label6">
+						<label class="collapse-header" for="label6">OBRYS TŁA TABELI (przód)</label>
+						<div class="collapse-content">
+							<label class="label">Kolor obrysu: <input type="color" value="#000000" class="fboxBorderCornersColor"></label>
+							<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="fboxBorderCornersColorOpacity"></label>
+							<label class="label">Łączenie linii: <select class="fboxBorderCornersLineJoin">
+								<option>round</option>
+								<option>bevel</option>
+								<option>mitter</option>
+							</select></label>
+							<label class="label">Zakończenie linii: <select class="fboxBorderCornersLineCap">
+								<option>round</option>
+								<option>butt</option>
+								<option>square</option>
+							</select></label>
+							<label class="label">Odstęp kreski: <input type="number" min="0" step="1" value="0" class="fboxBorderCornersDashSpace"></label>
+							<label class="label">Długość kreski: <input type="number" min="0" step="1" value="0" class="fboxBorderCornersDashLength"></label>
+							<label class="label">Przesunięcie fazowe: <input type="number" min="0" step="1" value="0" class="fboxBorderCornersDashPhase"></label>
+						</div>
+					</div>
+				</div>
+
+				<div class="collapse">
+					<div class="collapse-label">
+						<input type="checkbox" id="label7">
+						<label class="collapse-header" for="label7">TŁO (tył)</label>
+						<div class="collapse-content">
+							<label class="label">Kolor: <input type="color" value="#0073d6" class="bbgColor"></label>
+							<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="bbgColorOpacity"></label>
+							<label class="label">Promień: <input type="range" min="0" max="83.5" step="0.5" value="12.5" class="bbgCornersRound"></label>
+							<label class="label">Obrys: <input type="range" min="0" max="83.5" step="0.1" value="0" class="bbgBorderWidth"></label>
+						</div>
+					</div>
+				</div>
+
+				<div class="collapse">
+					<div class="collapse-label">
+						<input type="checkbox" id="label8">
+						<label class="collapse-header" for="label8">OBRYS TŁA (tył)</label>
+						<div class="collapse-content">
+							<label class="label">Kolor obrysu: <input type="color" value="#000000" class="bbgBorderCornersColor"></label>
+							<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="bbgBorderCornersColorOpacity"></label>
+							<label class="label">Łączenie linii: <select class="bbgBorderCornersLineJoin">
+								<option>round</option>
+								<option>bevel</option>
+								<option>mitter</option>
+							</select></label>
+							<label class="label">Zakończenie linii: <select class="bbgBorderCornersLineCap">
+								<option>round</option>
+								<option>butt</option>
+								<option>square</option>
+							</select></label>
+							<label class="label">Odstęp kreski: <input type="number" min="0" step="1" value="0" class="bbgBorderCornersDashSpace"></label>
+							<label class="label">Długość kreski: <input type="number" min="0" step="1" value="0" class="bbgBorderCornersDashLength"></label>
+							<label class="label">Przesunięie fazowe: <input type="number" min="0" step="1" value="0" class="bbgBorderCornersDashPhase"></label>
+						</div>
+					</div>
+				</div>
+
+				<div class="collapse">
+					<div class="collapse-label">
+						<input type="checkbox" id="label9">
+						<label class="collapse-header" for="label9">TŁO TABELI (tył)</label>
+						<div class="collapse-content">
+							<label class="label">Kolor: <input type="color" value="#0383e8" class="bboxColor"></label>
+							<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="bboxColorOpacity"></label>
+							<label class="label">Promień: <input type="range" min="0" max="72" step="0.5" value="0" class="bboxCornersRound"></label>
+							<label class="label">Kolor linii: <input type="color" value="#003b8f" class="btableLineColor"></label>
+							<label class="label">Kolor tekstu: <input type="color" value="#ffffff" class="btextColor"></label>
+							<label class="label">Obrys: <input type="range" min="0" max="72" step="0.1" value="0" class="bboxBorderWidth"></label>
+						</div>
+					</div>
+				</div>
+				
+				<div class="collapse">
+					<div class="collapse-label">
+						<input type="checkbox" id="label10">
+						<label class="collapse-header" for="label10">OBRYS TŁA TABELI (tył)</label>
+						<div class="collapse-content">
+							<label class="label">Kolor obrysu: <input type="color" value="#000000" class="bboxBorderCornersColor"></label>
+							<label class="label">Krycie: <input type="range" min="0" max="1" step="0.01" value="1" class="bboxBorderCornersColorOpacity"></label>
+							<label class="label">Łączenie linii: <select class="bboxBorderCornersLineJoin">
+								<option>round</option>
+								<option>bevel</option>
+								<option>mitter</option>
+							</select></label>
+							<label class="label">Zakończenie linii: <select class="bboxBorderCornersLineCap">
+								<option>round</option>
+								<option>butt</option>
+								<option>square</option>
+							</select></label>
+							<label class="label">Odstęp kreski: <input type="number" min="0" step="1" value="0" class="bboxBorderCornersDashSpace"></label>
+							<label class="label">Długość kreski: <input type="number" min="0" step="1" value="0" class="bboxBorderCornersDashLength"></label>
+							<label class="label">Przesunięcie fazowe: <input type="number" min="0" step="1" value="0" class="bboxBorderCornersDashPhase"></label>
+						</div>
 					</div>
 				</div>
 			</div>
