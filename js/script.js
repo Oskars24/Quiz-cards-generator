@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	const textAreaContent = document.querySelector('.textAreaContent')
 	const questionsContent = document.querySelector('.questionsContent')
 	const styleContent = document.querySelector('.styleContent')
+	const loader = document.querySelector('.loader')
 	
 	// Definicje przycisków
 	importButton.addEventListener('click', catchQuest)
@@ -487,8 +488,15 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		return cardsDef
 	}
+	
+	function viewLoader () {
+		loader.classList.toggle('disable')
+	}
 	// Funkcja generująca pdf
-	function generateCards () {pdfMake.createPdf(createCards()).download('karty.pdf')}
+	function generateCards () {
+		viewLoader ()
+		setTimeout(function () {pdfMake.createPdf(createCards()).download('karty.pdf', viewLoader())},100)
+	}
 	
 });
 
