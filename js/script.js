@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	const nextButton = document.querySelector('.nextButton')
 	const previousButton2 = document.querySelector('.previousButton2')
 	const generateButton = document.querySelector('.generateButton')
+	const resetButton = document.querySelector('.resetButton')
 	const textAreaContent = document.querySelector('.textAreaContent')
 	const questionsContent = document.querySelector('.questionsContent')
 	const styleContent = document.querySelector('.styleContent')
@@ -17,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	nextButton.addEventListener('click', nextButtonAction)
 	previousButton2.addEventListener('click', previousButton2Action)
 	generateButton.addEventListener('click', generateCards)
+	resetButton.addEventListener('click', resetImg)
 	
 	// Sprawdza długość pola input i przypisuje odpowiednią klasę
 	function checkInputLength (text, maxLength) {
@@ -96,6 +98,15 @@ document.addEventListener("DOMContentLoaded", function() {
 		questionsContent.classList.toggle('disable')
 		previousButton.classList.toggle('disable')
 		nextButton.classList.toggle('disable')
+	}
+
+	// Funkcja przycisku resetButton
+	function resetImg () {
+		leftLogoImageInput.value=''
+		rightLogoImageInput.value=''
+		leftLogoImageSrc= leftLogoDefault
+		rightLogoImageSrc= rightLogoDefault
+		drawCanvas()
 	}
 	
 	// Wybór tła:

@@ -13,7 +13,7 @@
 <body>
 
 <div class='main-grid'>
-<header class="header"><h1>Quiz Cards Generator</h1></header>
+<header class="header"><h1>QUIZ CARDS GENERATOR</h1></header>
 
 <main class="main">
 	<section class="app">
@@ -40,6 +40,7 @@
 				</div>
 			</div>
 			<div class="settingsDivStyle">
+				<div class="settingsColumn">
 				<div class="collapse">
 					<div class="collapse-label">
 						<input type="checkbox" id="label1">
@@ -47,12 +48,12 @@
 						<div class="collapse-content">
 							<div class="arrowsDiv">
 								<a class="littleArrow">Kolory: </a>
-								<label class="arrowLabel1">►<input type="color" value="#780d97" class="arrow1 disable"></label>
-								<label class="arrowLabel2">►<input type="color" value="#0391f1" class="arrow2 disable"></label>
-								<label class="arrowLabel3">►<input type="color" value="#e90687" class="arrow3 disable"></label>
-								<label class="arrowLabel4">►<input type="color" value="#f75116" class="arrow4 disable"></label>
-								<label class="arrowLabel5">►<input type="color" value="#fddb01" class="arrow5 disable"></label>
-								<label class="arrowLabel6">►<input type="color" value="#06bb69" class="arrow6 disable"></label>
+								<label class="arrowLabel1 arrowBtn">►<input type="color" value="#780d97" class="arrow1 disable"></label>
+								<label class="arrowLabel2 arrowBtn">►<input type="color" value="#0391f1" class="arrow2 disable"></label>
+								<label class="arrowLabel3 arrowBtn">►<input type="color" value="#e90687" class="arrow3 disable"></label>
+								<label class="arrowLabel4 arrowBtn">►<input type="color" value="#f75116" class="arrow4 disable"></label>
+								<label class="arrowLabel5 arrowBtn">►<input type="color" value="#fddb01" class="arrow5 disable"></label>
+								<label class="arrowLabel6 arrowBtn">►<input type="color" value="#06bb69" class="arrow6 disable"></label>
 							</div>
 							<label class="label">Obramowanie: <select class="arrowBorderStyle">
 									<option>blask</option>
@@ -60,17 +61,6 @@
 								</select></label>
 							<label class="label">Kolor obramowania: <input type="color" value="#ffffff" class="arrowBorderColor"></label>
 						</div>
-					</div>
-				</div>
-
-				<div class="collapse">
-					<div class=collapse-label>
-						<input type="checkbox" id="label2">
-						<label class="collapse-header" for="label2">OBRAZY TŁA (tył)</label>
-							<div class="collapse-content">
-								<label class="label"> Logo z lewej: <input type="file" accept="image/png, image/jpeg" class="leftLogoImageSrc"></label>
-								<label class="label"> Logo z prawej: <input type="file" accept="image/png, image/jpeg" class="rightLogoImageSrc"></label>
-							</div>
 					</div>
 				</div>
 
@@ -149,6 +139,19 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="settingsColumn">
+				<div class="collapse">
+					<div class=collapse-label>
+						<input type="checkbox" id="label2">
+						<label class="collapse-header" for="label2">OBRAZY TŁA (tył)</label>
+							<div class="collapse-content">
+								<label class="label"> Logo z lewej: <input type="file" accept="image/png, image/jpeg" class="leftLogoImageSrc"></label>
+								<label class="label"> Logo z prawej: <input type="file" accept="image/png, image/jpeg" class="rightLogoImageSrc"></label>
+								<button class="resetButton btn" type="button">Resetuj</button>
+							</div>
+					</div>
+				</div>
 
 				<div class="collapse">
 					<div class="collapse-label">
@@ -225,14 +228,15 @@
 						</div>
 					</div>
 				</div>
+				</div>
 			</div>
 		</div>
 		<nav class="buttonsField">
-			<button class="importButton" type="button">Importuj pytania</button>
-			<button class="previousButton disable" type="button">Wróć</button>
-			<button class="nextButton disable" type="button">Dalej</button>
-			<button class="previousButton2 disable" type="button">Wróć</button>
-			<button class="generateButton disable" type="button">Generuj pdf</button>
+			<button class="importButton btn" type="button">Importuj pytania</button>
+			<button class="previousButton disable btn" type="button">Wróć</button>
+			<button class="nextButton disable btn" type="button">Dalej</button>
+			<button class="previousButton2 disable btn" type="button">Wróć</button>
+			<button class="generateButton disable btn" type="button">Generuj pdf</button>
 		</nav>
 	</section>
 
@@ -240,7 +244,7 @@
 </div>
 
 <footer class="footer">
-      <p>Tutaj będzie stopka</p>
+
 </footer>
 
 </body>
