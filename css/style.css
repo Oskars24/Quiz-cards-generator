@@ -131,14 +131,14 @@ h1 {
 	transition: box-shadow .1s linear, transform .2s linear;
 }
 
-.question, .anserw {
+.question, .anserw, select, input[type=number], input[type=color i] {
 	border-radius: 12px;
     border: solid #dddddd 1px;
 	padding: 4px;
 	background-color: #e8e8e8;
 	margin: 2px;
 }
-.question:focus, .anserw:focus {
+.question:focus, .anserw:focus, select:focus, input[type=number]:focus,input[type=color i]:focus {
 	background-color: #ffffff;
 	outline-width: 0;
 	transition: background-color .2s ease;
@@ -184,6 +184,8 @@ h1 {
 .label {
 	margin: 7px;
 	font-size: 10pt;
+	width: fit-content;
+	width: -moz-fit-content;
 }
 
 .questionsContent {
@@ -242,6 +244,10 @@ h1 {
 
 .disable {
 	display: none;
+}
+
+input[type=number] {
+	width: 60px;
 }
 
 .collapse {
@@ -397,6 +403,10 @@ h1 {
 	}
 	.qaLine {
 		display: grid;
+	}
+	.qaLine::before {
+		content: "("counter(lineNumber) ")";
+		font-size: 6pt;
 	}
 	.label {
 		margin: 0;
