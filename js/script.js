@@ -47,6 +47,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 	// Importuje pytania i porządkuje w polach input
 	function catchQuest () {
+		viewLoader (0)
+		setTimeout(function(){
 		try {
 			const questions = Array.from(eval('['+document.querySelector('.qarea').value.replace(/"/g,'&quot;')+']'))
 			error1.classList.add('disable')
@@ -60,12 +62,15 @@ document.addEventListener("DOMContentLoaded", function() {
 				for (i=0;i<questions.length;i++) {
 					inputs=inputs+'<div class="qaLine"><label class="label">Q:<input class="question'+checkInputLength(questions[i][0], 190)+'" type="text" value="'+questions[i][0]+'"></label><label class="label">A:<input class="anserw'+checkInputLength(questions[i][1], 105)+'" type="text" value="'+questions[i][1]+'"></label></div>'
 				}
+				viewLoader(100)
 				return inputs
 			}
 			questionsContent.insertAdjacentHTML('afterbegin', makeInputs())
 		} catch {
+				viewLoader (100)
 				error1.classList.remove('disable')
-			}
+			}},100)
+			
 		}
 		
 	// Funkcja przycisku "wróć_1"	
@@ -489,12 +494,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		return cardsDef
 	}
 	
-	function viewLoader () {
-		loader.classList.toggle('disable')
+	function viewLoader (delay) {
+		setTimeout(function(){loader.classList.toggle('disable')},delay)
 	}
 	// Funkcja generująca pdf
 	function generateCards () {
-		viewLoader ()
+		viewLoader (0)
 		setTimeout(function () {pdfMake.createPdf(createCards()).download('karty.pdf', viewLoader())},100)
 	}
 	
