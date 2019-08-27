@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// Definicje przycisków
 	importButton.addEventListener('click', catchQuest)
 	previousButton.addEventListener('click', previousButtonAction)
-	nextButton.addEventListener('click', nextButtonAction)
+	nextButton.addEventListener('click', nextButtonActon)
 	previousButton2.addEventListener('click', previousButton2Action)
 	generateButton.addEventListener('click', generateCards)
 	resetButton.addEventListener('click', resetImg)
@@ -31,11 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// Waliduje pola input w czasie rzeczywistym
 	questionsContent.addEventListener('input', function(event){
 		if (event.target.classList.contains('question')) {
-<<<<<<< HEAD
 			if(checkNumOfLines(event.target.value, '6px Roboto medium', 190,4)>3) {
-=======
-			if(checkNumOfLines(event.target.value, '6px  medium', 190,4)>3) {
->>>>>>> d69ca7ed8af256b0d534a87bc2a8679f152a6b38
 				event.target.classList.add('tooLong')
 			} else {
 				event.target.classList.remove('tooLong')
