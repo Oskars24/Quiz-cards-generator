@@ -230,7 +230,7 @@ function drawCanvas(){
 	// Przykłądowy tekst karty przedniej
 		ctx.restore()
 		ctx.fillStyle = val.ftextColor
-		ctx.font = "6pt Roboto-Regular";
+		ctx.font = "6pt Roboto medium";
 		ctx.fillText('To jest przykładowa treść do pytania nr 1', 51, 27);
 		ctx.fillText('To jest przykładowa treść do pytania nr 2', 51, 51);
 		ctx.fillText('To jest przykładowa treść do pytania nr 3', 51, 75);
@@ -316,7 +316,7 @@ function drawCanvas(){
 	// Przykłądowy tekst karty drugiej
 		ctx2.restore()
 		ctx2.fillStyle = val.btextColor
-		ctx2.font = "6pt Roboto-Regular";
+		ctx2.font = "6pt Roboto medium";
 		ctx2.fillText('To jest odpowiedź nr 1', 88, 27);
 		ctx2.fillText('To jest odpowiedź nr 2', 88, 51);
 		ctx2.fillText('To jest odpowiedź nr 3', 88, 75);

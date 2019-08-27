@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 	// Sprawdza długość pola input i przypisuje odpowiednią klasę
 	function checkInputLength (text, maxLength) {
-				if(checkNumOfLines(text, '6px Roboto', maxLength,4)>3) {
+				if(checkNumOfLines(text, '6px Roboto medium', maxLength,4)>3) {
 					return ' tooLong'
 				} else {return ''}
 			}
@@ -31,13 +31,13 @@ document.addEventListener("DOMContentLoaded", function() {
 	// Waliduje pola input w czasie rzeczywistym
 	questionsContent.addEventListener('input', function(event){
 		if (event.target.classList.contains('question')) {
-			if(checkNumOfLines(event.target.value, '6px Roboto', 190,4)>3) {
+			if(checkNumOfLines(event.target.value, '6px  medium', 190,4)>3) {
 				event.target.classList.add('tooLong')
 			} else {
 				event.target.classList.remove('tooLong')
 			}
 		} else {
-			if(checkNumOfLines(event.target.value, '6px Roboto', 105,4)>3) {
+			if(checkNumOfLines(event.target.value, '6px Roboto medium', 105,4)>3) {
 				event.target.classList.add('tooLong')
 			} else {
 				event.target.classList.remove('tooLong')
@@ -331,8 +331,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	function adjustPadding(string, lineWidth, firstPadding, secondPadding, thirdPadding) {
 		text=string.trim().replace(/\s+/g,' ')
 		if (text==='') {text='_'}
-		sumLine=checkNumOfLines(text, '6px Roboto',lineWidth,3)
-		
+		sumLine=checkNumOfLines(text, '6px Roboto medium',lineWidth,3)
 		// Przypisuje wartość paddingu w zależności od ilości wierszy
 		if (sumLine===1) {
 			return firstPadding
@@ -478,11 +477,13 @@ document.addEventListener("DOMContentLoaded", function() {
 				frontCardStyle: {
 					color: val.ftextColor,
 					fontSize: 6,
+					bold: true,
 					alignment: 'left'
 				},
 				backCardStyle: {
 					color: val.btextColor,
 					fontSize: 6,
+					bold: true,
 					alignment: 'left'
 				},
 				bgColumn: {
@@ -497,6 +498,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	function viewLoader (delay) {
 		setTimeout(function(){loader.classList.toggle('disable')},delay)
 	}
+
 	// Funkcja generująca pdf
 	function generateCards () {
 		viewLoader (0)
