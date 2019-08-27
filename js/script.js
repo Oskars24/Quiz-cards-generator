@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// Definicje przycisków
 	importButton.addEventListener('click', catchQuest)
 	previousButton.addEventListener('click', previousButtonAction)
-	nextButton.addEventListener('click', nextButtonActon)
+	nextButton.addEventListener('click', nextButtonAction)
 	previousButton2.addEventListener('click', previousButton2Action)
 	generateButton.addEventListener('click', generateCards)
 	resetButton.addEventListener('click', resetImg)
