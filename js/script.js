@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		return {
 			image: rightLogoImageSrc,
 			//width: 44.2,
-			fit: [44.2,142.9],
+			fit: [44.2,144],
 			relativePosition: {x: 196.74488189,y: 12.12204724+167.244094488*y_relative}
 		}
 	}

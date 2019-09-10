@@ -330,7 +330,7 @@ function drawCanvas(){
 		ctx2.drawImage(leftImage, 18, 18, 24,131)
 		rightImage=new Image()
 		rightImage.src = rightLogoImageSrc
-		ctx2.drawImage(rightImage, 196, 12, 44,142)
+		ctx2.drawImage(rightImage, 196, 12, 44,144)
 		
 }
 drawCanvas()
