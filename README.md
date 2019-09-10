@@ -9,7 +9,7 @@ The application allows you to create cards with your own questions for the quiz 
 * pdfmake
 
 #### How it's working:
-1) Download the repository
+1) Download the repository or open https://oskars24.github.io/Quiz-cards-generator/ and go to step 3
 2) Run the __index.html__ file
 3) Enter the questions in the format given below and click the button __"Importuj pytania"__ (ie. "Import questions"):
 ```sh
@@ -40,7 +40,7 @@ Aplikacja pozwala stworzyć karty z własnymi pytaniami do quizu, spersonalizowa
 * pdfmake
 
 #### Uruchamianie:
-1) Pobierz repozytorium
+1) Pobierz repozytorium lub wejdź na https://oskars24.github.io/Quiz-cards-generator/ i przejdź do kruku 3
 2) Uruchom plik __index.html__
 3) Wprowadź pytania w formacie podanym poniżej i kliknij przycisk __"Importuj pytania"__:
 ```sh
