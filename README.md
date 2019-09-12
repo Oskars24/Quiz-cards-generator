@@ -40,7 +40,7 @@ Aplikacja pozwala stworzyć karty z własnymi pytaniami do quizu, spersonalizowa
 * pdfmake
 
 #### Uruchamianie:
-1) Pobierz repozytorium lub wejdź na https://oskars24.github.io/Quiz-cards-generator/ i przejdź do kruku 3
+1) Pobierz repozytorium lub wejdź na https://oskars24.github.io/Quiz-cards-generator/ i przejdź do kroku 3
 2) Uruchom plik __index.html__
 3) Wprowadź pytania w formacie podanym poniżej i kliknij przycisk __"Importuj pytania"__:
 ```sh
