@@ -1,5 +1,6 @@
 Live Demo: https://oskars24.github.io/Quiz-cards-generator/
 # Quiz Cards Generator
+![Podglad](https://lh3.googleusercontent.com/o_GPjvFgNDMFpFgvM4ssW_SJLpzCWxH-ma2OKrciNY2-VZvEwgqFLjOZllwR85cbabGBpb9t6Qa2)
 #### Description (PL below):
 The application allows you to create cards with your own questions for the quiz game, personalize their appearance and generate a pdf file ready for double-sided printing. Works 100% on the browser side.
 
